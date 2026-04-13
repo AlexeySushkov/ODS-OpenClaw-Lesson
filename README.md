@@ -36,11 +36,6 @@
 # Полезные команды
 
 # Сравнение n8n и OpenClaw
-
-![n8n vs OpenClaw](https://github.com/AlexeySushkov/ODS-OpenClaw-Lesson/blob/main/images/n8n%20vs%20OpenClaw.png) 
-
-Если использовать OpenClaw, то необходимо осознанно оценивать и принимать риски!
-
 |  | **n8n** | **OpenClaw** |
 | :---: | :---: | :---: |
 | **Принцип работы** | Четкий, визуальный сценарий (Workflow).| Задача на естественном языке. AI-агент сам решает, какие инструменты (скиллы) использовать и в какой последовательности, какие LLM использовать |
@@ -53,4 +48,8 @@
 | **Расширяемость** | Ноды (nodes) | Скиллы (skills) |
 | **Цена** | Предсказуемая по запросу | Наоборот |
 
+
+
+## Если использовать OpenClaw, то необходимо осознанно принимать риски!
+![n8n vs OpenClaw](https://github.com/AlexeySushkov/ODS-OpenClaw-Lesson/blob/main/images/n8n%20vs%20OpenClaw.png) 
 
