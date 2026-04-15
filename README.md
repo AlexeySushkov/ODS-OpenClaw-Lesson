@@ -1,4 +1,9 @@
                    
+# Об авторе 
+Семинар ведет Алексей Сушков: главный специалист Nexign, участвует в развитии сообщества ИИ, реализует собственные pet-проекты, делится результатами исследований в [**статьях на Habr**](https://habr.com/ru/users/AlexeySushkov/)
+
+https://github.com/AlexeySushkov/ODS-OpenClaw-Lesson/blob/main/images/Nexign2.png
+
 # OpenClaw: личный ИИ-агент в рабочей среде
 
 - Что такое OpenClaw: архитектура и принципы
