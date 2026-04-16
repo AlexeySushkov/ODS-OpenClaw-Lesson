@@ -212,17 +212,65 @@ openclaw logs 2>&1 | grep -i "model\|haiku\|gemini" | tail -10
  Проверьте расходы в дашборде OpenRouter https://openrouter.ai/activity
 
 # Skills 
-Устанавливаем skill gog
-Google Workspace CLI для Gmail, Calendar, Drive, Contacts, Sheets, Docs
+Устанавливаем skill gog - Google Workspace CLI для Gmail, Calendar, Drive, Contacts, Sheets, Docs
 
-- установи skill gog
-- brew install steipete/tap/gogcli
-- Где взять client_secret.json
-- Куда положить client_secret.json
-- Как использовать с gog
-- Настройка всего
- 
-  
+## установи skill gog
+```bash
+brew install steipete/tap/gogcli
+```
+
+## Генерация client_secret.json
+Этот файл нельзя скачать готовым - его нужно сгенерировать самостоятельно в Google Cloud Console специально для gog. Следуйте этой инструкции:
+- Перейдите в Google Cloud Console и авторизуйтесь под своей учетной записью Google.
+- Откройте страницу: Google Cloud Console.
+- Создайте новый проект (рекомендуется).
+- Включите необходимые API. В боковом меню перейдите в раздел «API и сервисы» > «Библиотека». В строке поиска найдите и поочередно включите (Включить) все API, которые планируете использовать. Минимальный набор для gog auth add:
+  - Gmail API
+  - Google Calendar API
+  - Google Drive API
+  - People API (для контактов)
+- Создайте учетные данные (OAuth Client ID).
+  - В боковом меню перейдите в раздел «API и сервисы» > «Учетные данные».
+  - Нажмите синюю кнопку «+ Создать учетные данные» и выберите «OAuth client ID».
+  - В открывшейся форме:
+    - Тип приложения: Выберите «Десктопное приложение» (Desktop app) . Это важно, так как gog запускается на вашем компьютере.
+    - Имя: Введите любое понятное имя, например, Gog CLI on my Ubuntu.
+    - Остальные поля можно оставить пустыми.
+  - Нажмите кнопку «Создать».
+- Скачайте файл с учетными данными.
+  - Сразу после создания появится всплывающее окно с вашим Client ID и Client Secret.
+  - Нажмите синюю кнопку «Скачать JSON» (Download JSON).
+  - Этот скачанный файл и есть ваш client_secret.json. Он будет иметь имя вида client_secret_ваш-id.apps.googleusercontent.com.json. Для простоты вы можете переименовать его в client_secret.json.
+
+## Куда положить client_secret.json
+- Рекомендуемый вариант - cохраните файл в папку для конфигураций ~/.config/gogcli/.
+- Важно: Чтобы gog распознал файл в будущем без указания пути, его следует переименовать в credentials.json и положить в папку ~/.config/gogcli/
+
+
+## Как использовать с gog
+Теперь его можете передать в команду gog auth credentials. Вы можете использовать абсолютный или относительный путь к файлу.
+```bash
+gog auth credentials ~/.config/gogcli/credentials.json
+```
+## Настройка в OpenClaw
+
+- После успешного выполнения этой команды можно добавить ваш аккаунт. Обратите внимание на  --manual
+```bash
+gog auth add Alexey.P.Sushkov@gmail.com --services gmail,calendar,drive,contacts,sheets,docs --manual
+```
+- Проверить, что все прошло успешно, можно командой:
+```bash
+gog auth list
+```
+- Вы должны увидеть ваш email в списке авторизованных аккаунтов.
+- Проверка календаря 
+```bash
+gog calendar events e5b2dxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4c690f@group.calendar.google.com  --from 2026-04-01 --to 2026-04-30
+```
+- Поскольку вы работаете на VPS и выполняете команды из скриптов/автоматизации, лучше переключиться на файловое хранилище. Это полностью убирает необходимость в паролях и безопаснее, чем хранить пароль в открытом виде в ~/.bashrc.
+- После переключения на файловое хранилище команда gog calendar events будет работать без любых переменных окружения и без запроса пароля.
+- При дальнейшей работе учесть, что невозможно выборочно отозвать доступ для одного API, оставив другой, в рамках одного OAuth 2.0 Client ID. Отзыв токена всегда аннулирует все разрешения, выданные пользователем для этого Client ID.
+   
 # Сustom skill
 Способы
 - "Пожалуйста, сделай мне навык summarize через ClawHub"
