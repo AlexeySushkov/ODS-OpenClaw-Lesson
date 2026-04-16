@@ -46,9 +46,10 @@
 
 # Установка 
 ## Предусловия
-- Вызвать Telegram BotFather 
-- Получить Google API Keys
-- Получить Tavily API Key - поиск в интернете 
+- Получить API Keys:
+  - Для Telegram в BotFather 
+  - Для Google
+  - Tavily - поиск в интернете 
 - Платная подписка на LLM или бесплатная с лимитами, или локальная модель
   - Huggingface: https://huggingface.co/
   - Openrouter: https://openrouter.ai/ 
@@ -56,7 +57,7 @@
   - Свой ноут с отдельной VM (VirtualBox) - ограничения по безопасности и работе 24/7
   - VPS (Virtual Private Server) - платный, минимальная конфигурация: 2 ядра CPU, 4 ГБ RAM, 40 ГБ HDD
 
-## Инструкции 
+## Инструкции по установке
 - [**Selectel: OpenClaw: установка и первые впечатления**](https://habr.com/ru/companies/selectel/articles/1009278/)
 - Видео с обзором установки и кейсами из официальной документации OpenClaw: 
   - [**ClawdBot (OpenClaw): The self-hosted AI that Siri should have been (Full setup)**](https://www.youtube.com/watch?v=SaWSPZoPX34)
@@ -218,8 +219,7 @@ brew install steipete/tap/gogcli
 ## Генерация client_secret.json
 Этот файл нельзя скачать готовым - его нужно сгенерировать самостоятельно в Google Cloud Console специально для gog. Следуйте этой инструкции:
 - Перейдите в Google Cloud Console и авторизуйтесь под своей учетной записью Google.
-- Откройте страницу: Google Cloud Console.
-- Создайте новый проект.
+- Откройте страницу Google Cloud Console, создайте новый проект.
 - Включите необходимые API. В боковом меню перейдите в раздел «API и сервисы» > «Библиотека». В строке поиска найдите и поочередно включите все API, которые планируете использовать. Минимальный набор для gog auth add:
   - Gmail API
   - Google Calendar API
@@ -239,9 +239,8 @@ brew install steipete/tap/gogcli
   - Этот скачанный файл и есть ваш client_secret.json. Он будет иметь имя вида client_secret_ваш-id.apps.googleusercontent.com.json. Для простоты вы можете переименовать его в client_secret.json.
 
 ## Куда положить client_secret.json
-- Рекомендуемый вариант - cохраните файл в папку для конфигураций ~/.config/gogcli/.
-- Важно: Чтобы gog распознал файл в будущем без указания пути, его следует переименовать в credentials.json и положить в папку ~/.config/gogcli/
-
+- Рекомендуемый вариант - cохраните файл в папку для конфигураций ~/.config/gogcli/
+- Чтобы gog распознал файл в будущем без указания пути, его следует переименовать в credentials.json
 
 ## Как использовать с gog
 Теперь его можете передать в команду gog auth credentials. Вы можете использовать абсолютный или относительный путь к файлу.
@@ -301,7 +300,7 @@ gog calendar events e5b2dxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4c690f@group.calendar.goog
 # Лайфхаки 
 - Замена на openrouter/auto на claude-haiku-4.5 - экономия до 80%.
 - Использовать мощную модель для размышления, и дешевые для выполнения
-- Продукт сырой, документация не полная, неопределенность где что делать 
+- Продукт сырой, документация не полная, неопределенность где что делать, для ответов на вопросы больше всего подходит DeepSeek (тестировал также ChatGPT и Qwen)
 - Новый чат в Telegram начинать после изменений конфига 
 
 # Полезные команды
@@ -332,11 +331,11 @@ openclaw security audit --deep
 openclaw security audit --fix
 ```
 
-# Итоги 
+# Итоги практики
 - OpenClaw запущен и доступен по localhost
-- Подключены каналы (TG + Gmail/Calendar)
+- Подключены каналы (Telegram + Gmail/Calendar)
 - Установлен skill из ClawHub (gog, tavily) + написан кастомный (шутки, summarize)
-- Агент читает события в календаре, ищет новости и и отправляет в TG
+- Агент читает события в календаре, ищет новости, генерирует шутку и отправляет сообщение в Telegram
 
 # Сравнение n8n и OpenClaw
 OpenClaw - пожиратель токенов номер 1 в мире: https://openrouter.ai/rankings 
