@@ -147,11 +147,11 @@ openclaw gateway restart
 - Запускаем новый чат 
 
 ## LLM меняем модель
-модель в 
+- Модель задается в: 
 ```bash
 ~/.openclaw/openclaw.json
 ```
-Было:
+- Было:
 ```json
 "model": {
   "primary": "openrouter/auto"
@@ -162,8 +162,7 @@ openclaw gateway restart
   }
 }
 ```
-
-Стало (пример с Haiku 4.5):
+- Стало (пример с Haiku 4.5):
 ```json
 "model": {
   "primary": "openrouter/anthropic/claude-haiku-4.5"
@@ -174,10 +173,7 @@ openclaw gateway restart
   }
 }
 ```
-Опционально) Добавьте резервную модель
-
-Чтобы система не ломалась, если основная модель недоступна:
-
+- Добавьте резервную модель, чтобы система не ломалась, если основная модель недоступна:
 ```json
 "model": {
   "primary": "openrouter/anthropic/claude-haiku-4.5",
@@ -192,29 +188,21 @@ openclaw gateway restart
   "openrouter/deepseek/deepseek-chat": { "alias": "DeepSeek" }
 }
 ```
-
-Сохраните и проверка
-
-Проверка синтаксиса (опционально)
+- Проверка синтаксиса:
 ```bash
 python3 -m json.tool ~/.openclaw/openclaw.json > /dev/null && echo "✓ JSON OK"
 ```
-
-# Перезагрузите конфиг 
+- Перезагрузите конфиг:
 ```bash
 openclaw gateway restart
 ```
-
-Проверка: работает ли новая модель?
-
-Задать вопрос  Какую модель ты используешь сейчас? Назови провайдера и точное название модели.
-Отправьте тестовый запрос: openclaw ask "Какая сегодня дата? Ответь кратко." Посмотрите логи — должна быть запись с новой моделью
-
+- Проверка: работает ли новая модель?
+  - Задать вопрос  Какую модель ты используешь сейчас? Назови провайдера и точное название модели.
+  - Отправьте тестовый запрос: openclaw ask "Какая сегодня дата? Ответь кратко." Посмотрите логи — должна быть запись с новой моделью:
 ```bash
 openclaw logs 2>&1 | grep -i "model\|haiku\|gemini" | tail -10
 ```
-
- Проверьте расходы в дашборде OpenRouter https://openrouter.ai/activity
+- Проверьте расходы в дашборде OpenRouter https://openrouter.ai/activity
 
 # Skills 
 Устанавливаем skill gog - Google Workspace CLI для Gmail, Calendar, Drive, Contacts, Sheets, Docs
