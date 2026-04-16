@@ -317,7 +317,7 @@ OpenClaw - пожиратель токенов номер 1 в мире: https:/
 ![n8n vs OpenClaw](https://github.com/AlexeySushkov/ODS-OpenClaw-Lesson/blob/main/images/n8n%20vs%20OpenClaw.png) 
 
 
-# Запись стрима (необработанныя)
+# Запись стрима (необработанная)
 
 - https://www.youtube.com/live/ymkvLJtAKEI
 - https://vkvideo.ru/video-229052741_456239051?list=ln-HdUc8gB8NH50rOSJjN
